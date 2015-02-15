@@ -5,6 +5,6 @@
 
 Who are we| Name 
 :------:|:----:
-Scrum master | Nada Hamdi
+Co-founder | Nada Hamdi
 Co-founder | Mohamed Yasser
-Co-Founders | Merna Emad
+Co-founder | Merna Emad

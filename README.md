@@ -5,6 +5,6 @@
 
 Who are we| Name 
 :------:|:----:
-Co-founder | Nada Hamdi
-Co-founder | Mohamed Yasser
-Co-founder | Merna Emad
+Founder | Nada Hamdi
+Founder | Mohamed Yasser
+Founder | Merna Emad

@@ -1,3 +1,7 @@
-Welcome to Arcode Home of the coding fun. :')
+# Welcome to Arcode Home of the coding fun. :')
 
-Co-Founders: Mohamed Yasser
+## Our People
+
+
+Co-founder | Mohamed Yasser
+Scrum master | (Ekteby esmek ya nada)

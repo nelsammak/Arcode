@@ -3,8 +3,8 @@
 
 ## Our People
 
-Who we are | Name 
+Who are we| Name 
 :------:|:----:
-Scrum master | (Ekteby esmek ya nada)
+Scrum master | Nada Hamdi
 Co-founder | Mohamed Yasser
 Co-Founders | Merna Emad

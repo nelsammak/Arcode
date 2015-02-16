@@ -11,3 +11,4 @@ Founder | Merna Emad
 Founder | Karim El Sheikh
 Founder | Israa Elwan
 Founder | Omar Mahmoud
+Founder | Mina Nemr

@@ -7,18 +7,10 @@
   	img.resize{
    width:300px;
    height:200px;
-}
-    body {
-    	background: white;
-      	text-align: center;
-      	font-style: italic;
-      	font-size: 22px;
-      }
-      p {
-      	color: blue;
-      }
+  }
   </style>
-  <script language="JavaScript" type="text/javascript">
+
+<script language="JavaScript" type="text/javascript">
 
 if (document.getElementById) {
  document.write('<style type="text/css">.texter {display:none; border-left:white 20px solid; color:#404040; font-family:verdana,arial,helvetica,sans-serif; font-size:9pt} @media print {.texter {display:block;}}</style>') }
@@ -61,12 +53,16 @@ function closeAll() {
             </div>
         </div>
 
-<div style="float: left; margin-left: 60px; margin-top: 20px; background: url(avatar.png) no-repeat; background-size: cover; background-position: center;" class="circular"></div>
+<div style="background: url(avatar.png) no-repeat;  background-size: cover;
+background-position: center;"  class="circular"></div>
 
-<div style="float: left; margin-top: 30px"><p>Name: Karim Ihab El Sheikh</p>
-<p style="margin-left: 20px;">Email: kimoxvirus@gmail.com</p>
-<div onClick="openClose('a1')" style="cursor:hand; cursor:pointer; font-size:30pt"><b>About me</b></div>
- <div id="a1" class="texter">
+<div style="float: left; margin-top: 60px">
+  <p class="infoFont" > Karim Ihab El Sheikh</p>
+  <p class="infoFont">Email: kimoxvirus@gmail.com</p>
+
+<div onClick="openClose('a1')" class="pop-up"><b>About me</b></div>
+ 
+<div id="a1" class="texter">
  GUC MET-CS 6th Semester Student,<br>ACM Contestant,<br>Android Developer,<br>pessimist ;)
   <br /><br />
  </div>

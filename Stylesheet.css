@@ -1,9 +1,36 @@
+body{
+	background: white;
+   	text-align: center;
+   	font-style: italic;
+   	font-size: 23px;
+}
+
+
 .circular {
 	width: 300px;
 	height: 300px;
 	border-radius: 150px;
 	border-style: solid;
-	border-color: #A00000;
-	-webkit-border-radius: 150px;
-	-moz-border-radius: 150px;
+	border-color: #FFFF00;
+	float: left;
+	margin-left: 60px;
+	margin-top: 60px;
+	
+	}
+
+.pop-up {
+	cursor:hand;
+ 	cursor:pointer; 
+	font-size:30pt;
+}
+
+
+
+
+
+.infoFont {
+	margin-left: 30px;
+	color: black;
+	font-family: monospace; ;
+	
 	}

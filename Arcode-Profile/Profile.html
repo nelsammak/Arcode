@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+<LINK rel="stylesheet" href="Stylesheet.css" TYPE="text/css">
+<link type="text/css" rel="stylesheet" href="main.css" />
+<title>Profile Page</title>
+  <style>
+  	img.resize{
+   width:300px;
+   height:200px;
+}
+    body {
+    	background: white;
+      	text-align: center;
+      	font-style: italic;
+      	font-size: 22px;
+      }
+      p {
+      	color: blue;
+      }
+  </style>
+  <script language="JavaScript" type="text/javascript">
+
+if (document.getElementById) {
+ document.write('<style type="text/css">.texter {display:none; border-left:white 20px solid; color:#404040; font-family:verdana,arial,helvetica,sans-serif; font-size:9pt} @media print {.texter {display:block;}}</style>') }
+
+ var divNum = new Array("a1","a2","a3");  
+function openClose(theID) {
+ for(var i=0; i < divNum.length; i++) {
+  if (divNum[i] == theID) {
+   if (document.getElementById(divNum[i]).style.display == "block") { document.getElementById(divNum[i]).style.display = "none" }
+   else { document.getElementById(divNum[i]).style.display = "block" }
+  }
+  else { document.getElementById(divNum[i]).style.display = "none"; }
+ }
+}
+
+function openAll() {
+ for(var i=0; i < divNum.length; i++) {
+   document.getElementById(divNum[i]).style.display = "block";
+ }
+}
+
+function closeAll() {
+ for(var i=0; i < divNum.length; i++) {
+   document.getElementById(divNum[i]).style.display = "none";
+ }
+}
+// -->
+</script>
+</head>
+<body>
+        <div class="header">
+            <div class="navbar">
+                <ul id="navbar-ulist">
+                    <li style="list-style-type:none"><a href="home.html" class="navbar-link">Home</a></li>
+                    <li style="list-style-type:none"><a href="top.html" class="navbar-link">Our Projects</a></li>
+                    <li style="list-style-type:none"><a href="gallery.html" class="navbar-link">Team</a></li>
+                    <li style="list-style-type:none"><a href="new.html" class="navbar-link">FAQ</a></li>
+                    <li style="list-style-type:none"><a href="faq.html" class="navbar-link">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+
+<div style="float: left; margin-left: 60px; margin-top: 20px; background: url(avatar.png) no-repeat; background-size: cover; background-position: center;" class="circular"></div>
+
+<div style="float: left; margin-top: 30px"><p>Name: Karim Ihab El Sheikh</p>
+<p style="margin-left: 20px;">Email: kimoxvirus@gmail.com</p>
+<div onClick="openClose('a1')" style="cursor:hand; cursor:pointer; font-size:30pt"><b>About me</b></div>
+ <div id="a1" class="texter">
+ GUC MET-CS 6th Semester Student,<br>ACM Contestant,<br>Android Developer,<br>pessimist ;)
+  <br /><br />
+ </div>
+ <div><p>Contacts</p></div>
+<p><a href="https://www.facebook.com/karim.e.sheikh"><img src="facebook_32.png"></a>
+   <a href="https://twitter.com/Citapocta"><img src="twitter_32.png"></a>
+   <a href="https://plus.google.com/u/0/100071631130651171371"><img src="gplus-32.png"></a>
+</p></div>
+
+
+
+ <!-- <div onClick="openClose('a2')" style="margin-right: 600px; cursor:hand; cursor:pointer; font-family:verdana,arial,helvetica,sans-serif; font-size:10pt"><b>2] Contact me at:</b></div>
+ <div style="margin-right: 600px;" id="a2" class="texter">
+ Mobile Number : 01005166323 </br> Email: Mernawaseif94@gmail.com<br /><br />
+ </div>
+
+ <div onClick="openClose('a3')" style="margin-right: 600px; cursor:hand; cursor:pointer; font-family:verdana,arial,helvetica,sans-serif; font-size:10pt"><b>3] Activities</b></div>
+ <div style="margin-right: 600px;" id="a3" class="texter">
+   ACM Contestant<br /><br />
+ </div> -->
+
+
+</body>

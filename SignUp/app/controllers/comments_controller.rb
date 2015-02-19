@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
-
-	  def create
+  before_action :redirect_user
+	def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.create(:body => params[:comment][:body], :user_id => @current_user.id)
     redirect_to article_path(@article)
   end
  
- def destroy
+  def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy

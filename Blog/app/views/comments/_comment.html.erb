@@ -1,6 +1,6 @@
 <p>
   <strong>Commenter:</strong>
-  <%= comment.commenter %>
+  <%= "#{User.find_by_id(comment.user_id).name}" if User.exists?(comment.user_id) %>
 </p>
  
 <p>
@@ -13,3 +13,4 @@
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 </p>
+

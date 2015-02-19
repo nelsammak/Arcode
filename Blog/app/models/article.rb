@@ -1,5 +1,9 @@
-class Article < ActiveRecord::Base
-	has_many :comments,  dependent: :destroy #On Delete Cascade
+	class Article < ActiveRecord::Base
+ 	has_many :comments,  dependent: :destroy
+ 	belongs_to :user
+
+ 	default_scope -> { order(created_at: :desc) }
+  
   	validates :title, presence: true,
-              		  length: { minimum: 5 }
+                    length: { minimum: 5 }
 end

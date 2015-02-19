@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :redirect_user
 	
 	def new
   @article = Article.new
@@ -9,14 +10,15 @@ def edit
 end
 
 def create
-	 @article = Article.new(article_params)
- 
+	 @article = Article.new(article_params) 
   if @article.save
     redirect_to @article
   else
     render 'new'
   end
 end
+
+
 
 def update
   @article = Article.find(params[:id])
@@ -47,4 +49,5 @@ private
     params.require(:article).permit(:title, :text)
   end
 
+  
 end

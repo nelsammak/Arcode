@@ -15,5 +15,85 @@
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
  
-<%= link_to 'Back', articles_path %>
-<%= link_to 'Edit', edit_article_path(@article) %>
+<%= link_to 'Back', articles_path,  class: "btn btn-primary" %>
+<%= link_to 'Edit', edit_article_path(@article),  class: "btn btn-primary" %>
+
+ <div class="container-center">
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1><%= @article.title %></h1>
+
+                <!-- Author -->
+                <p class="lead">
+                    by <a href="#">Start Bootstrap</a>
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span>Created at <%=@article.created_at%></p>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p class="lead"><%=@article.text%></p>
+
+                <hr>
+
+                <!-- Blog Comments -->
+
+
+ 
+
+
+  				<%= form_for([@article, @article.comments.build]) do |f| %>
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                            <%= f.text_area :body %>
+                            <%= f.submit 'Submit', :class => "btn btn-primary"%>
+                </div>
+
+                <% end %>
+            </div>
+          <div class = "button-div"> <%= link_to 'Back', articles_path,  class: "btn btn-primary" %> </div>
+
+        <div class = "button-div"> <%= link_to 'Edit', edit_article_path(@article),  class: "btn btn-primary" %> </div>
+        </div>
+     
+
+    </div>
+
+    <!--View Comments -->
+
+		<div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <% @article.comments do |comment| %>
+                    <div class="media-body">
+                        
+                        <h4 class="media-heading"><%= "TEST"  %>
+                            <p> Created At: <%= comment.created_at %> </p>
+                        </h4>
+
+                 		<%= comment.body %>
+
+                 		<%end%>
+                    </div>
+        </div>
+
+
+

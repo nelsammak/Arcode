@@ -3,7 +3,7 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title, index: true
       t.text :text, index: true
-
+      t.belongs_to :user
       t.timestamps null: false
     end
   end

@@ -1,0 +1,9 @@
+<%= form_for :category, :url => addcategory2_path(params[:article_id]) do |f| %>
+  <p>
+    <%= f.label 'Enter the Category' %><br>
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.submit 'Add Category to Article' %>
+  </p>
+<% end %>

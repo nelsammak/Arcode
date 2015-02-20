@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :photos
+
 resources :users
 
   resources :articles do 
@@ -8,7 +10,9 @@ resources :users
   end
 
 
-  root 'welcome#index'
+  root 'static_pages#home'
+
+  get 'static_pages/home' => 'static_pages#home'
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

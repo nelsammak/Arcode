@@ -9,19 +9,31 @@ def edit
 end
 
 def create
-	 @article = Article.new(article_params)
- 
-  if @article.save
+   @article = Article.new(article_params)
+   @article.user_id = current_user.id
+    if @article.save
+      if params[:photos].present?
+    params[:photos]['image'].each do |a|
+    @photo = @article.photos.create!(:image => a, :article_id => @article.id)
+      end
+    end
     redirect_to @article
   else
     render 'new'
   end
 end
 
+
+
 def update
   @article = Article.find(params[:id])
- 
+  
   if @article.update(article_params)
+     if params[:photos].present?
+    params[:photos]['image'].each do |a|
+    @photo = @article.photos.create!(:image => a, :article_id => @article.id)
+    end
+  end
     redirect_to @article
   else
     render 'edit'
@@ -33,6 +45,9 @@ def index
 end
 def show
     @article = Article.find(params[:id])
+    @photos = @article.photos.all
+    @post_by = User.find_by(id: @article.user_id)
+    @comments = @article.comments
 end
 
 def destroy
@@ -44,7 +59,7 @@ end
 
 private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :image)
   end
 
 end

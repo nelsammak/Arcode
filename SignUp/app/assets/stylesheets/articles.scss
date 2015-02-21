@@ -1,3 +1,14 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container-center {
+	margin: auto;
+	margin-right: auto;
+	width: 90%;
+}
+.span-right {
+	margin-right: auto;
+}

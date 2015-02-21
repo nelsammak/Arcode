@@ -2593,3 +2593,420 @@ Processing by ArticlesController#index as HTML
   [1m[35mArticle Load (0.4ms)[0m  SELECT "articles".* FROM "articles"
   Rendered articles/index.html.erb within layouts/application (5.3ms)
 Completed 200 OK in 65ms (Views: 63.4ms | ActiveRecord: 0.4ms)
+  [1m[36m (172.1ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "text" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (151.2ms)[0m  [1mCREATE  INDEX "index_articles_on_text" ON "articles" ("text")[0m
+  [1m[35m (0.4ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_articles_on_text' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_articles_on_text' AND type='index'
+
+  [1m[36m (215.9ms)[0m  [1mCREATE  INDEX "index_articles_on_title" ON "articles" ("title")[0m
+  [1m[35m (264.7ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "article_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (184.4ms)[0m  [1mCREATE  INDEX "index_comments_on_article_id" ON "comments" ("article_id")[0m
+  [1m[35m (186.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (153.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (206.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150216154006')[0m
+  [1m[35m (165.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150216082533')
+  [1m[36m (213.2ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "text" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (173.9ms)[0m  [1mCREATE  INDEX "index_articles_on_text" ON "articles" ("text")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_articles_on_text' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_articles_on_text' AND type='index'
+
+  [1m[36m (183.8ms)[0m  [1mCREATE  INDEX "index_articles_on_title" ON "articles" ("title")[0m
+  [1m[35m (184.2ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "article_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (184.6ms)[0m  [1mCREATE  INDEX "index_comments_on_article_id" ON "comments" ("article_id")[0m
+  [1m[35m (184.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (154.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (206.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150216154006')[0m
+  [1m[35m (165.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150216082533')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddParentIdToComments (20150220231901)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "comments" ADD "parent_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150220231901"]]
+  [1m[36m (240.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCommentHierarchies (20150220231916)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "comment_hierarchies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "ancestor_id" integer NOT NULL, "descendant_id" integer NOT NULL, "generations" integer NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "comment_anc_desc_udx" ON "comment_hierarchies" ("ancestor_id", "descendant_id", "generations")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='comment_anc_desc_udx' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='comment_anc_desc_udx' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "comment_desc_idx" ON "comment_hierarchies" ("descendant_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150220231916"]]
+  [1m[36m (183.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_articles_on_title' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_articles_on_title' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_articles_on_text' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_articles_on_text' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='comment_desc_idx' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='comment_desc_idx' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='comment_anc_desc_udx' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='comment_anc_desc_udx' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_article_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_article_id' AND type='index'
+[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-21 10:44:33 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Completed 500 Internal Server Error in 29ms
+
+ActionView::MissingTemplate (Missing template welcome/index, application/index with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates"
+  * "/home/veegas/GUC/SE/Arcode/Blog/app/views"
+):
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/path_set.rb:46:in `find'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/lookup_context.rb:121:in `find'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/template_renderer.rb:8:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/renderer.rb:42:in `render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/renderer.rb:23:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:100:in `_render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:83:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/rendering.rb:25:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:16:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:40:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/base.rb:198:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:10:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:117:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:117:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/callbacks.rb:19:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rescue.rb:29:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications.rb:164:in `block in instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications.rb:164:in `instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/base.rb:137:in `process'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:30:in `process'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal.rb:195:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal.rb:236:in `block in action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:73:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:30:in `each'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:30:in `serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:802:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/etag.rb:24:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/conditionalget.rb:25:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/head.rb:13:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/flash.rb:260:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/session/abstract/id.rb:225:in `context'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/session/abstract/id.rb:220:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/query_cache.rb:36:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/migration.rb:378:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:88:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:18:in `middleware_call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:38:in `call_app'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `block in call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:26:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/methodoverride.rb:22:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/runtime.rb:18:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/static.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/sendfile.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/engine.rb:518:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application.rb:164:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/content_length.rb:15:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/handler/webrick.rb:89:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.7ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/missing_template.html.erb within rescues/layout (42.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-21 10:45:21 +0200
+
+LoadError (cannot load such file -- /home/veegas/GUC/SE/Arcode/Blog/config/routes.rb):
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/dependencies.rb:268:in `load'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/dependencies.rb:268:in `block in load'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/dependencies.rb:240:in `load_dependency'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/dependencies.rb:268:in `load'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:40:in `block in load_paths'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:40:in `each'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:40:in `load_paths'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:16:in `reload!'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:26:in `block in updater'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/file_update_checker.rb:75:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/file_update_checker.rb:75:in `execute'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/routes_reloader.rb:7:in `execute'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application/finisher.rb:81:in `block (2 levels) in <module:Finisher>'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:441:in `instance_exec'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:441:in `block in make_lambda'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:189:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:189:in `block in simple'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:190:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:190:in `block in simple'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:190:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:190:in `block in simple'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:734:in `_run_prepare_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/reloader.rb:83:in `prepare!'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/reloader.rb:71:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:18:in `middleware_call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:38:in `call_app'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `block in call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:26:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/methodoverride.rb:22:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/runtime.rb:18:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/static.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/sendfile.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/engine.rb:518:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application.rb:164:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/content_length.rb:15:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/handler/webrick.rb:89:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (3.8ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (23.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-21 10:46:29 +0200
+Processing by WelcomeController#index as HTML
+Completed 500 Internal Server Error in 4ms
+
+ActionView::MissingTemplate (Missing template welcome/index, application/index with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates"
+  * "/home/veegas/GUC/SE/Arcode/Blog/app/views"
+):
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/path_set.rb:46:in `find'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/lookup_context.rb:121:in `find'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/template_renderer.rb:8:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/renderer.rb:42:in `render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/renderer/renderer.rb:23:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:100:in `_render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:83:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/rendering.rb:25:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:16:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:40:in `render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/base.rb:198:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rendering.rb:10:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:117:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:117:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:234:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:169:in `block in halting'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:734:in `_run_process_action_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/callbacks.rb:19:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rescue.rb:29:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications.rb:164:in `block in instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/notifications.rb:164:in `instrument'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/abstract_controller/base.rb:137:in `process'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionview-4.2.0/lib/action_view/rendering.rb:30:in `process'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal.rb:195:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_controller/metal.rb:236:in `block in action'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:73:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:42:in `serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:30:in `each'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/journey/router.rb:30:in `serve'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/routing/route_set.rb:802:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/etag.rb:24:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/conditionalget.rb:25:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/head.rb:13:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/flash.rb:260:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/session/abstract/id.rb:225:in `context'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/session/abstract/id.rb:220:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/query_cache.rb:36:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activerecord-4.2.0/lib/active_record/migration.rb:378:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:88:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:18:in `middleware_call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:38:in `call_app'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `block in call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:26:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/tagged_logging.rb:68:in `tagged'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/rack/logger.rb:20:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/methodoverride.rb:22:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/runtime.rb:18:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/activesupport-4.2.0/lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/actionpack-4.2.0/lib/action_dispatch/middleware/static.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/sendfile.rb:113:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/engine.rb:518:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/railties-4.2.0/lib/rails/application.rb:164:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/lock.rb:17:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/content_length.rb:15:in `call'
+  /home/veegas/.rvm/gems/ruby-2.2.0@global/gems/rack-1.6.0/lib/rack/handler/webrick.rb:89:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/veegas/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (6.4ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (0.9ms)
+  Rendered /home/veegas/.rvm/gems/ruby-2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/missing_template.html.erb within rescues/layout (26.2ms)

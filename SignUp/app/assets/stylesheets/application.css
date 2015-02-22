@@ -20,6 +20,10 @@ body {
   padding-top: 60px;
 }
 
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
 section {
   overflow: auto;
 }
@@ -30,6 +34,7 @@ textarea {
 
 .center {
   text-align: center;
+  margin: auto;
 }
 
 
@@ -110,40 +115,3 @@ footer ul li {
   margin-left: 15px;
 }
 
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px;
-  }
-}
-
-.navbar {
-  background: #000;
-  color: transparent; 
-}
-
- a:link {
-  color: #000;
-  text-decoration: none;
-}
-  a:visited {
-  color: #000;
-  text-decoration: none;
-}
-
-a:hover {
-	color: #FF4;
-  text-decoration: none;
-}
-a:active {
-	color: #FF4;
-  text-decoration: none;
-}
-a {
-  text-decoration: none;
-}
-
- 

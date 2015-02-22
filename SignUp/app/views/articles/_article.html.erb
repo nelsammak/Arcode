@@ -1,4 +1,4 @@
-<h3 class= "text-left">
+<h3 class= "center">
                    <b><%= link_to article.title, article_path(article) %></b> 
                 </h3>
                 <p class="lead">
@@ -16,9 +16,11 @@
                   <% end %>
 
                 <hr>
+                    <div class = "center">
                     <% article.photos.first(1).each do |p| %>
                     <%= image_tag p.image_url, :class => "img-responsive"%>
                     <hr>
+                    </div>
                 <% end %>
                 <blockquote>
                     <p><%= article.text %></p>

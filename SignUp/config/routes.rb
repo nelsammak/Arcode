@@ -13,6 +13,14 @@ resources :users
   root 'static_pages#home'
 
   get 'static_pages/home' => 'static_pages#home'
+  get 'Israa' => 'static_pages#Israa'
+  get 'Karim' => 'static_pages#Karim'
+  get 'Merna' => 'static_pages#Merna'
+  get 'Mina' => 'static_pages#Mina'
+  get 'Mohamed' => 'static_pages#Mohamed'
+  get 'Nada' => 'static_pages#Nada'
+  get 'Omar' => 'static_pages#Omar'
+
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

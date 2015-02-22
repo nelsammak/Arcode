@@ -1,0 +1,29 @@
+<h3 class= "text-left">
+                   <b><%= link_to article.title, article_path(article) %></b> 
+                </h3>
+                <p class="lead">
+                    by <%= link_to article.user.name, user_path(article.user) %>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on 
+                <%= article.created_at.strftime('%d/%m/%Y, %H:%M') %>
+                </p>
+                </div>
+
+                  <% if current_user.admin? %>
+                  <span><%= link_to 'Edit', edit_article_path(article), :class => "btn btn-primary", style:"color:white" %></span>
+                  <span><span><%= link_to 'Delete', article_path(article),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", style:"color:white" %></span>
+                  <% end %>
+
+                <hr>
+                    <% article.photos.first(1).each do |p| %>
+                    <%= image_tag p.image_url, :class => "img-responsive"%>
+                    <hr>
+                <% end %>
+                <blockquote>
+                    <p><%= article.text %></p>
+                <%= link_to 'Read More', article_path(article), :class => "btn btn-primary", style:"color:white"%>
+                </blockquote> 
+
+<hr>

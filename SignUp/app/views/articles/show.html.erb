@@ -1,19 +1,89 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+ <div class="container-center">
 
- 
-<h2>Comments</h2>
-<%= render @article.comments %>
+        <div class="row">
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1><%= @article.title %></h1>
+
+                <!-- Author -->
+                <p class="lead">
+                by <%= @article.user.name %>
+                </p>
  
-<%= link_to 'Back', articles_path %>
-<%= link_to 'Edit', edit_article_path(@article) %>
+                <%= link_to 'Back', articles_path,  class: "btn btn-primary" %> 
+    
+                <span class = "span-right">
+                    <%= link_to 'Edit', edit_article_path(@article),  class: "btn btn-primary" %>
+                </span>
+                <%= link_to 'Delete', article_path(@article), method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+              <% if @article.user_id == current_user.id %>
+                <%= link_to 'Add Category', addcategory_path(@article),  class: "btn btn-primary" %>
+                <% end %>
+                <hr>
+                <br>
+
+                <!-- Date/Time -->
+                <p>
+                <span class="glyphicon glyphicon-time"></span>
+                Created at <%=@article.created_at.strftime('%d/%m/%Y, %H:%M')%></p>
+                <hr>
+
+                <!-- Preview Image -->
+                <%= image_tag @article.image_url.to_s if @article.image? %>
+                <% @photos.each do |p| %>
+                    <%= image_tag p.image_url %>
+                    <br><br><br>
+                    <hr>
+                <% end %>
+                
+
+                <!-- Post Content -->
+                <p class="lead"><%=@article.text%></p>
+
+
+                <hr>
+
+                 <span class='st_sharethis_large' displayText='ShareThis'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_email_large' displayText='Email'></span>
+
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "882ba12b-c172-4e06-8643-87e379f3f1e9", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+                <!-- Blog Comments -->
+        
+            
+                <br>
+
+  				<%= form_for([@article, @article.comments.build]) do |f| %>
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                            <%= f.text_area :body %>
+                            <%= f.submit 'Submit', :class => "btn btn-primary"%>
+                            <% end %>
+                </div>
+
+                 <% if @comments.count > 0 %>
+                <%= render @comments %>
+            <% end%> 
+
+            </div>             
+        </div>
+</div>
+
+          
+
+
+

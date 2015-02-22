@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :photos
+
 resources :users
 
   resources :articles do 
@@ -8,11 +10,16 @@ resources :users
   end
 
 
-  root 'welcome#index'
+  root 'static_pages#home'
+
+  get 'static_pages/home' => 'static_pages#home'
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get '/bycategory' => 'articles#bycategory', as: :bycategory
+  get '/addcategory/:article_id' => 'articles#addcategory', as: :addcategory
+  post '/addcategory/:article_id' => 'articles#addcategory2', as: :addcategory2
   #get 'sessions/new'
 
 

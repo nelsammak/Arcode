@@ -7,23 +7,22 @@
                         
                        <h4 class="media-heading">
 						               
-
-						<p>
 						<%if comment.user.nil? %>
 						<%else%>
-						  <%= comment.user.name %> :
-						 
+						 <h2 class = "text-left" style = "text-decoration= bold"><%= link_to comment.user.name, user_path(comment.user) %></h2>
+						</h4>
+
+						 <p>
 						   <%= comment.body %>
 						  <% end %>
-						  <br/>
-						<%= link_to 'Destroy Comment', [comment.article, comment],
-						  method: :delete, data: { confirm: 'Are you sure?' } %>
-						 
-						 </p>
-				       </h4>
+						  <br>
+						  <br>
+						 <%= link_to 'Delete Comment', [comment.article, comment],
+						  method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm"%>
+			       		</p>
 
 					</div>
+</div>
 
 					
 <% end %>
-<div>

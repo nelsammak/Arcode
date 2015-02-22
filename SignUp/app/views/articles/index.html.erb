@@ -1,33 +1,20 @@
 
 <div class = "container">
   <div class = "row" >
-    <h1>Blog Posts</h1>
+    <h1 class= "page-header">Blog Posts</h1>
+    
+    <div class = "row">
     <% if current_user.admin? %>
-    <%= link_to 'New article', new_article_path%> 
+    <%= link_to 'New article', new_article_path, :class => "btn btn-primary btn-lg", style:"color:white"%> 
     <% end %>
-      <% @article.each do |article| %>
-        
-        <div class = "panel panel-default">
-          
-          <div class = "panel-heading">
-            <h3>
-            <%= link_to article.title, article_path(article) %>
-            </h3>
-          </div>
+    </div>
+      <% @articles.each do |article| %>
 
-          <div class = "panel-body">
-          <h5><%= article.text %></h5>
-          </div>
-
-          <% if current_user.admin? %>
-          <span><%= link_to 'Edit', edit_article_path(article), :class => "btn btn-primary" %></span>
-          <span><%= link_to 'Delete', article_path(article),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %></span>
-          <% end %>
-        </div>
+      <%= render article%>
 
       <% end %>
+      
+      <%= will_paginate @articles %>
 
 
   </div>

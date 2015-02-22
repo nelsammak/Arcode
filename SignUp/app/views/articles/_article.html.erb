@@ -7,11 +7,10 @@
                 <p><span class="glyphicon glyphicon-time"></span> Posted on 
                 <%= article.created_at.strftime('%d/%m/%Y, %H:%M') %>
                 </p>
-                </div>
 
                   <% if current_user.admin? %>
                   <span><%= link_to 'Edit', edit_article_path(article), :class => "btn btn-primary", style:"color:white" %></span>
-                  <span><span><%= link_to 'Delete', article_path(article),
+                  <span><%= link_to 'Delete', article_path(article),
                   method: :delete,
                   data: { confirm: 'Are you sure?' }, :class => "btn btn-danger", style:"color:white" %></span>
                   <% end %>
@@ -23,7 +22,27 @@
                 <% end %>
                 <blockquote>
                     <p><%= article.text %></p>
-                <%= link_to 'Read More', article_path(article), :class => "btn btn-primary", style:"color:white"%>
+                <%= link_to article_path(article), :class => "btn btn-primary", style:"color:white" do %>
+                Read More
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <% end %>      
                 </blockquote> 
-
+                
+                <% if article.categories.present? %>
+                <div class = "well well-sm">
+                <span>
+                <ul class="list-inline">
+                <% cats = [] %>
+                <% article.categories.each do |c| %>
+                <li>
+                  <h4>
+                  <span class="badge"><%= c.category %></span>
+                  </h4>
+                </li>
+                <% end %>
+                </ul>
+                </span>
+                </div>
+                <% end %>
+                
 <hr>

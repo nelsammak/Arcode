@@ -22,6 +22,10 @@
                 </span>
                 <%= link_to 'Delete', article_path(@article), method: :delete,
               data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+              <% if @article.user_id == current_user.id %>
+                <%= link_to 'Add Category', addcategory_path(@article),  class: "btn btn-primary" %>
+                <% end %>
                 <hr>
                 <br>
 

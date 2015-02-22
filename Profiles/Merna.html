@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<LINK rel="stylesheet" href="Stylesheet.css" TYPE="text/css">
+<link type="text/css" rel="stylesheet" href="main.css" />
+
+
+<title>Merna Emad</title>
+</head>
+
+
+
+
+
+<div style="background: url(Merna.jpg) no-repeat;  background-size: cover;
+background-position: center;"  class="circular"></div>
+
+<div id="rightdiv" >
+  <p class="infoFont" > Merna Emad</p> 
+
+<div id="pop"   onClick="openClose('a1')">Contacts</div>
+
+<div id="a1" class="texter">
+ <p><a href="https://www.facebook.com/karim.e.sheikh"><i class="fa fa-facebook fa-4x"></i></i></a>
+   <a href="https://twitter.com/Citapocta"><i class="fa fa-twitter fa-4x"></i></a>
+   <a href="https://plus.google.com/u/0/100071631130651171371"><i class="fa fa-google-plus fa-4x "></i></a>
+</p></div>
+ 
+
+
+
+<div  id="pop"  onClick="openClose('a2')">About me</div>
+
+<div id="a2"  class="texter">
+ GUC MET-CS 6th Semester Student<br><br>ACM Contestant<br><br>Android Developer<br><br>pessimist ;)
+  <br /><br />
+ </div>
+
+ <div  id="pop"   onClick="openClose('a3')">Previous Projects</div>
+
+<div id="a3"  class="texter" >
+ Santorini 2D game<br><br>Place reviewing website<br><br>Smart room<br><br>Prolog interpreter
+  <br /><br />
+ </div>
+
+ <div  id="pop"  onClick="openClose('a4')">Activities</div>
+
+<div id="a4"  class="texter">
+ Gaming<br><br>Swimming<br><br>Tennis<br><br>Basketball<br /><br />
+ </div>
+
+ 
+</div>
+
+
+
+
+
+
+<script language="JavaScript" type="text/javascript">
+
+if (document.getElementById) {
+ document.write('<style type="text/css">.texter {display:none; border-left:white 0px solid; color:#404040; font-family:verdana,arial,helvetica,sans-serif; font-size:9pt} @media print {.texter {display:block;}}</style>') }
+
+ var divNum = new Array("a1","a2","a3","a4");  
+function openClose(theID) {
+ for(var i=0; i < divNum.length; i++) {
+  if (divNum[i] == theID) {
+   if (document.getElementById(divNum[i]).style.display == "block") { document.getElementById(divNum[i]).style.display = "none" }
+   else { document.getElementById(divNum[i]).style.display = "block" }
+  }
+  else { document.getElementById(divNum[i]).style.display = "none"; }
+ }
+}
+
+function openAll() {
+ for(var i=0; i < divNum.length; i++) {
+   document.getElementById(divNum[i]).style.display = "block";
+ }
+}
+
+function closeAll() {
+ for(var i=0; i < divNum.length; i++) {
+   document.getElementById(divNum[i]).style.display = "none";
+ }
+}
+// -->
+</script>
+
+
+</body>

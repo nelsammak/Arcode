@@ -1,0 +1,10 @@
+<h3 style = "font-family:Times New Roman; color:#A01B00">Select your category</h1>
+<%= form_for :category, url: articles_path, method: :get do |f| %>
+<div style="width: 200px">
+<%= f.collection_select :category, Category.order(:id),:id,:category, class: "btn btn-default dropdown-toggle" %>
+</div>
+<br>
+<div style="width: 200px">
+<%= f.submit 'Submit'%>
+</div>
+<% end %>

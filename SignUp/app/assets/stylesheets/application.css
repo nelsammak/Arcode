@@ -115,3 +115,9 @@ footer ul li {
   margin-left: 15px;
 }
 
+.jumbotron {
+	padding: 0em 0em;
+	background: white;
+	width: 100%;
+}
+

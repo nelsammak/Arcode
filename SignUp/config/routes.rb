@@ -20,6 +20,7 @@ resources :users
   get 'Mohamed' => 'static_pages#Mohamed'
   get 'Nada' => 'static_pages#Nada'
   get 'Omar' => 'static_pages#Omar'
+  get 'Aboutus' => 'static_pages#Aboutus'
 
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'

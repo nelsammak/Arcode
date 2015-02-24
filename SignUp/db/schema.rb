@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20150221071509) do
   add_index "articles", ["text"], name: "index_articles_on_text"
   add_index "articles", ["title"], name: "index_articles_on_title"
 
+
+  create_table "articles_categories", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "article_id",  null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comment_on_comments", force: :cascade do |t|
     t.text    "field"
     t.integer "user_id"

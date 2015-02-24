@@ -17,6 +17,12 @@ resources :users
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+<<<<<<< HEAD
+=======
+  get '/bycategory' => 'articles#bycategory', as: :bycategory
+  get '/addcategory/:article_id' => 'articles#addcategory', as: :addcategory
+  post '/addcategory/:article_id' => 'articles#addcategory2', as: :addcategory2
+>>>>>>> 5eb42be2eea0344bb1dd7c13e0387ade6e81709c
   #get 'sessions/new'
 
 

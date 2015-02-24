@@ -7,6 +7,7 @@
                         
                        <h4 class="media-heading">
 						               
+<<<<<<< HEAD
 						<%if comment.user.nil? %>
 						<%else%>
 						 <h2 class = "text-left" style = "text-decoration= bold"><%= link_to comment.user.name, user_path(comment.user) %></h2>
@@ -26,3 +27,25 @@
 
 					
 <% end %>
+=======
+
+						<p>
+						<%if comment.user.nil? %>
+						<%else%>
+						  <%= comment.user.name %> :
+						 
+						   <%= comment.body %>
+						  <% end %>
+						  <br/>
+						<%= link_to 'Destroy Comment', [comment.article, comment],
+						  method: :delete, data: { confirm: 'Are you sure?' } %>
+						 
+						 </p>
+				       </h4>
+
+					</div>
+
+					
+<% end %>
+<div>
+>>>>>>> 5eb42be2eea0344bb1dd7c13e0387ade6e81709c

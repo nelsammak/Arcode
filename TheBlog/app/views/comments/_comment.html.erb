@@ -1,0 +1,12 @@
+						<%if comment.user.nil? %>
+						<%else%>
+						  <h3><b>Comment by: <%= comment.user.name %></b><h3>
+						 
+						   <%= comment.body %>
+						  <% end %>
+						  <br/>
+						</h4>
+						<%= link_to 'Delete Comment', [comment.article, comment],
+						  method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+						  <hr>					
+<% end %>

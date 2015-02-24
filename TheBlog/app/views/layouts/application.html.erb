@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Arcode</title>
+    
+    <% if controller_name == "static_pages_controller"%>
+     <%= stylesheet_link_tag "static_pages" %>
+     <%= javascript_include_tag 'static_pages', 'data-turbolinks-track' => true %>
+     <% else %>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <% end %>
+   </head>
+  <body>
+      <%= render 'layouts/header' %>
+      <div class="container">
+      <div class="container" style = "background: url(/assets/background.jpg);
+    background-size: 100%;">
+      <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

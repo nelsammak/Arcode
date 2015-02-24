@@ -1,0 +1,64 @@
+a:link {	
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #FFFF00;
+}
+
+a:active {
+    color: #FFFF00;
+}
+a{
+	text-decoration:none;
+}
+
+.circular {
+	width: 600px;
+	height: 300px;
+	float: center;
+	margin: auto;
+	
+	}
+.infoFont {
+  	line-height: 50px;
+	height: 50px;
+	font-size: 30px;
+  	font-family:serif;
+  	margin-left: 30px;
+
+	}
+
+.info {
+	font-size: 20px;
+  	font-family:serif;
+  	
+	}
+#rightdiv{
+
+	line-height: 80px;	
+	text-align: center;
+}
+
+.carousel-inner  > .item {
+
+	margin: 0 auto;
+}
+
+
+
+
+#Headline{
+
+ font-family: cursive;
+ font-size: 30px;
+}
+
+
+	
+
+

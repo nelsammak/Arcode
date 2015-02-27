@@ -1,0 +1,81 @@
+/* line 4, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+body {
+  text-align: center;
+  background: url(background.jpg);
+  background-size: 100%;
+}
+
+/* line 13, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+a:link {
+  color: #000000;
+}
+
+/* line 17, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+a:visited {
+  color: #000000;
+}
+
+/* line 21, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+a:hover {
+  color: #FFFF00;
+}
+
+/* line 25, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+a:active {
+  color: #0000FF;
+}
+
+/* line 31, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#rightdiv {
+  float: left;
+  margin-top: 27px;
+  margin-left: 80px;
+  text-align: center;
+}
+
+/* line 38, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#a2 {
+  margin-top: 10px;
+}
+
+/* line 42, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#a3 {
+  margin-top: 10px;
+}
+
+/* line 46, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#a4 {
+  margin-top: 5px;
+}
+
+/* line 50, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#pop:hover {
+  color: #FFFF00;
+}
+
+/* line 53, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+#pop {
+  font-family: cursive;
+  cursor: hand;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+/* line 62, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+.circular {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  border-style: solid;
+  border-color: #FFFF00;
+  float: left;
+  margin-left: 60px;
+  margin-top: 30px;
+}
+
+/* line 82, /home/omar/Desktop/blogz/Arcode/TheBlog/app/assets/stylesheets/static_pages.scss */
+.infoFont {
+  font-size: 30px;
+  color: black;
+  font-family: impact;
+}

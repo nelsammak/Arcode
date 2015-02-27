@@ -32,7 +32,7 @@ gem 'specific_assets'
 gem 'heroku', '~> 3.27.2'
 
 #server
-gem 'thin'
+gem "puma"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

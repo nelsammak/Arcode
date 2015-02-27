@@ -1,1 +1,1 @@
-web: bundle exec routes -C config/routes.rb
+web: bundle exec puma -C config/puma.rb

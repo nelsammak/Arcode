@@ -29,6 +29,7 @@ def create
     redirect_to @article
   else
     render 'new'
+    flash[:error] = "Error Creating article"
   end
 end
 

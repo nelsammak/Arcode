@@ -7,7 +7,6 @@
     <% if current_user.admin? %>
     <%= link_to 'New article', new_article_path, :class => "btn btn-primary btn-lg", style:"color:white"%> 
     <% end %>
-
     <%= link_to 'View articles by categories', bycategory_path, :class => "btn btn-primary btn-lg", style:"color:white" %>
       <% @articles.each do |article| %>
       </div>
@@ -19,7 +18,5 @@
       <% end %>
       
       <%= will_paginate @articles %>
-
-
   </div>
 </div>
